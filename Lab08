@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    printf("LEADING and TRAILING Example\n");
+
+    printf("\nGrammar: E -> E+T | T\n");
+
+    printf("\nLEADING(E) = { id, ( }\n");
+    printf("TRAILING(E) = { id, ) }\n");
+
+    return 0;
+}
