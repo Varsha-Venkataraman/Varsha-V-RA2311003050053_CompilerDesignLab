@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch;
+    printf("Enter input (Ctrl+D to stop):\n");
+    while ((ch = getchar()) != EOF) {
+        if (isalpha(ch))
+            printf("Identifier: %c\n", ch);
+        else if (isdigit(ch))
+            printf("Number: %c\n", ch);
+        else if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+            printf("Operator: %c\n", ch);
+        else if (isspace(ch))
+            continue;
+        else
+            printf("Special Symbol: %c\n", ch);
+    }
+    return 0;
+}
