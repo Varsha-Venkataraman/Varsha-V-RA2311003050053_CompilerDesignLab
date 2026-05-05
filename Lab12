@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 int main() {
-    printf("Simple Code Generation\n");
+    char a,b,c;
+    printf("Enter expression (a=b+c): ");
+    scanf("%c=%c+%c",&a,&b,&c);
 
-    printf("\nInput: a = b + c\n");
-    printf("MOV b, R1\n");
-    printf("ADD c, R1\n");
-    printf("MOV R1, a\n");
+    printf("\nAssembly Code:\n");
+    printf("MOV %c, R1\n", b);
+    printf("ADD %c, R1\n", c);
+    printf("MOV R1, %c\n", a);
 
     return 0;
 }
