@@ -1,12 +1,50 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+char prod[10][10];
+int n;
+
+void leading(char c) {
+    for(int i=0;i<n;i++) {
+        if(prod[i][0]==c) {
+            if(!isupper(prod[i][3]))
+                printf("%c ", prod[i][3]);
+            else
+                leading(prod[i][3]);
+        }
+    }
+}
+
+void trailing(char c) {
+    for(int i=0;i<n;i++) {
+        int len = strlen(prod[i]);
+        if(prod[i][0]==c) {
+            if(!isupper(prod[i][len-1]))
+                printf("%c ", prod[i][len-1]);
+            else
+                trailing(prod[i][len-1]);
+        }
+    }
+}
 
 int main() {
-    printf("LEADING and TRAILING Example\n");
+    printf("Enter number of productions: ");
+    scanf("%d",&n);
 
-    printf("\nGrammar: E -> E+T | T\n");
+    printf("Enter productions:\n");
+    for(int i=0;i<n;i++)
+        scanf("%s", prod[i]);
 
-    printf("\nLEADING(E) = { id, ( }\n");
-    printf("TRAILING(E) = { id, ) }\n");
+    char c;
+    printf("Enter symbol: ");
+    scanf(" %c",&c);
+
+    printf("\nLEADING(%c): ", c);
+    leading(c);
+
+    printf("\nTRAILING(%c): ", c);
+    trailing(c);
 
     return 0;
 }
