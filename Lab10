@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char exp[20];
+    printf("Enter expression: ");
+    scanf("%s", exp);
+
+    printf("\nPostfix (simple): ");
+
+    for(int i = 0; exp[i]; i++) {
+        if(isalnum(exp[i]))
+            printf("%c", exp[i]);
+    }
+
+    for(int i = 0; exp[i]; i++) {
+        if(!isalnum(exp[i]))
+            printf("%c", exp[i]);
+    }
+
+    return 0;
+}
