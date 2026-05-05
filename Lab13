@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main() {
+    printf("DAG Representation Example\n");
+
+    printf("\nExpression: a = b + c\n");
+    printf("Node1: b\nNode2: c\nNode3: +\n");
+
+    return 0;
+}
