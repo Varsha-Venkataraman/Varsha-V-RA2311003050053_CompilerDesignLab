@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    printf("Simple Code Generation\n");
+
+    printf("\nInput: a = b + c\n");
+    printf("MOV b, R1\n");
+    printf("ADD c, R1\n");
+    printf("MOV R1, a\n");
+
+    return 0;
+}
