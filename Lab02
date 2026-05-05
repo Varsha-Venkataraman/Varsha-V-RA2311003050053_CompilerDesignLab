@@ -1,24 +1,48 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+
+typedef struct state {
+    int id;
+    struct state *out1, *out2;
+    char symbol;
+} State;
+
+State* createState(int id, char symbol) {
+    State* s = (State*)malloc(sizeof(State));
+    s->id = id;
+    s->symbol = symbol;
+    s->out1 = s->out2 = NULL;
+    return s;
+}
+
+void display(State *s) {
+    if(s == NULL) return;
+
+    if(s->out1)
+        printf("q%d -- %c --> q%d\n", s->id, s->symbol, s->out1->id);
+
+    if(s->out2)
+        printf("q%d -- ε --> q%d\n", s->id, s->out2->id);
+
+    display(s->out1);
+    display(s->out2);
+}
 
 int main() {
-    char regex[20];
-    printf("Enter regular expression (a|b format): ");
-    scanf("%s", regex);
+    // Example: a|b
+    State *s0 = createState(0, 'ε');
+    State *s1 = createState(1, 'a');
+    State *s2 = createState(2, 'b');
+    State *s3 = createState(3, 'ε');
 
-    printf("\nNFA Transition Table:\n");
+    s0->out1 = s1;
+    s0->out2 = s2;
 
-    int state = 0;
+    s1->out1 = s3;
+    s2->out1 = s3;
 
-    for(int i = 0; i < strlen(regex); i++) {
-        if(regex[i] == '|') continue;
-
-        printf("q%d -- %c --> q%d\n", state, regex[i], state+1);
-        state++;
-    }
-
-    printf("Start State: q0\n");
-    printf("Final State: q%d\n", state);
+    printf("NFA for a|b:\n");
+    display(s0);
 
     return 0;
 }
