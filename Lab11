@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    printf("Quadruple Example\n");
+
+    printf("\nExpression: a = b + c\n");
+    printf("op\targ1\targ2\tresult\n");
+    printf("+\tb\tc\tt1\n");
+    printf("=\tt1\t-\ta\n");
+
+    return 0;
+}
