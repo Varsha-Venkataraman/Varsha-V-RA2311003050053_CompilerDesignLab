@@ -2,12 +2,14 @@
 #include <string.h>
 
 int main() {
-    char prod[20], alpha[10], beta[10];
+    char prod[50], alpha[20], beta[20];
+    char A;
+
     printf("Enter production (A->Aa|b): ");
     scanf("%s", prod);
 
-    char A = prod[0];
-    int i = 3, j = 0, k = 0;
+    A = prod[0];
+    int i=3,j=0,k=0;
 
     while(prod[i] != '|') {
         if(prod[i] != A)
@@ -21,8 +23,8 @@ int main() {
         i++;
     }
 
-    beta[j] = '\0';
-    alpha[k] = '\0';
+    beta[j]='\0';
+    alpha[k]='\0';
 
     printf("\nAfter removing Left Recursion:\n");
     printf("%c -> %s%c'\n", A, beta, A);
