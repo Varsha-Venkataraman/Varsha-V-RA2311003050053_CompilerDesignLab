@@ -1,11 +1,20 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    printf("LR(0) Items Example\n");
+    printf("LR(0) Closure Example\n");
 
-    printf("\nE -> .E+T\n");
-    printf("E -> E.+T\n");
-    printf("E -> E+T.\n");
+    printf("\nGrammar:\nE -> E+T | T\n");
+    printf("T -> T*F | F\n");
+    printf("F -> (E) | id\n");
+
+    printf("\nItems:\n");
+    printf("E -> .E+T\n");
+    printf("E -> .T\n");
+    printf("T -> .T*F\n");
+    printf("T -> .F\n");
+    printf("F -> .(E)\n");
+    printf("F -> .id\n");
 
     return 0;
 }
