@@ -1,10 +1,12 @@
 #include <stdio.h>
 
 int main() {
-    printf("Data Flow Analysis Example\n");
+    printf("Reaching Definitions Example\n");
 
-    printf("\nReaching Definitions:\n");
-    printf("d1 reaches d2\n");
+    printf("\nBlock1: a = 5\n");
+    printf("Block2: b = a + 2\n");
+
+    printf("\nDefinition of 'a' reaches Block2\n");
 
     return 0;
 }
