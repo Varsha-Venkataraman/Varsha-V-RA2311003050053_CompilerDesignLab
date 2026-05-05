@@ -1,12 +1,57 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+char production[10][10];
+char first[10], follow[10];
+int n;
+
+void findFirst(char c) {
+    for(int i=0;i<n;i++) {
+        if(production[i][0] == c) {
+            if(!isupper(production[i][3])) {
+                printf("%c ", production[i][3]);
+            } else {
+                findFirst(production[i][3]);
+            }
+        }
+    }
+}
+
+void findFollow(char c) {
+    if(c == production[0][0])
+        printf("$ ");
+
+    for(int i=0;i<n;i++) {
+        for(int j=3;j<strlen(production[i]);j++) {
+            if(production[i][j] == c) {
+                if(production[i][j+1] != '\0') {
+                    findFirst(production[i][j+1]);
+                } else {
+                    findFollow(production[i][0]);
+                }
+            }
+        }
+    }
+}
 
 int main() {
-    printf("FIRST and FOLLOW example\n");
+    printf("Enter number of productions: ");
+    scanf("%d",&n);
 
-    printf("\nGrammar:\nE -> TR\nR -> +TR | ε\n");
+    printf("Enter productions (E->TR):\n");
+    for(int i=0;i<n;i++)
+        scanf("%s", production[i]);
 
-    printf("\nFIRST(E) = { id, ( }\n");
-    printf("FOLLOW(E) = { $, ) }\n");
+    char c;
+    printf("Enter symbol: ");
+    scanf(" %c",&c);
+
+    printf("\nFIRST(%c) = ", c);
+    findFirst(c);
+
+    printf("\nFOLLOW(%c) = ", c);
+    findFollow(c);
 
     return 0;
 }
