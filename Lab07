@@ -1,26 +1,51 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-    char input[20], stack[20];
-    int top = -1;
+char stack[50];
+int top = -1;
 
-    printf("Enter string: ");
+void push(char c) {
+    stack[++top] = c;
+    stack[top+1] = '\0';
+}
+
+void pop() {
+    stack[top--] = '\0';
+}
+
+int main() {
+    char input[50];
+    int i = 0;
+
+    printf("Enter string (use i for id): ");
     scanf("%s", input);
 
-    printf("\nShift Reduce Process:\n");
+    printf("\nStack\tInput\tAction\n");
 
-    for(int i = 0; i < strlen(input); i++) {
-        stack[++top] = input[i];
-        stack[top+1] = '\0';
+    while(1) {
+        if(input[i] != '\0') {
+            push(input[i]);
+            printf("%s\t%s\tShift\n", stack, &input[i+1]);
+            i++;
+        }
 
-        printf("Shift: %s\n", stack);
-
+        // Reduce i -> E
         if(stack[top] == 'i') {
             stack[top] = 'E';
-            printf("Reduce: %s\n", stack);
+            printf("%s\t%s\tReduce E->i\n", stack, &input[i]);
+        }
+
+        // Reduce E+E
+        if(top >= 2 && stack[top]=='E' && stack[top-1]=='+' && stack[top-2]=='E') {
+            pop(); pop(); pop();
+            push('E');
+            printf("%s\t%s\tReduce E->E+E\n", stack, &input[i]);
+        }
+
+        if(input[i] == '\0' && top == 0 && stack[top]=='E') {
+            printf("%s\t%s\tAccepted\n", stack, &input[i]);
+            break;
         }
     }
-
     return 0;
 }
