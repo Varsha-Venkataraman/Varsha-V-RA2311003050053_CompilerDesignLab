@@ -1,12 +1,21 @@
 #include <stdio.h>
 
 int main() {
-    printf("Quadruple Example\n");
+    printf("Expression: a = b + c * d\n\n");
 
-    printf("\nExpression: a = b + c\n");
+    printf("Quadruple:\n");
     printf("op\targ1\targ2\tresult\n");
-    printf("+\tb\tc\tt1\n");
-    printf("=\tt1\t-\ta\n");
+    printf("*\tc\td\tt1\n");
+    printf("+\tb\tt1\tt2\n");
+    printf("=\tt2\t-\ta\n");
+
+    printf("\nTriple:\n");
+    printf("0: * c d\n");
+    printf("1: + b (0)\n");
+    printf("2: = (1) a\n");
+
+    printf("\nIndirect Triple:\n");
+    printf("Pointer Table: 0 1 2\n");
 
     return 0;
 }
