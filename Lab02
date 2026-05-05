@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char regex[20];
+    printf("Enter regular expression (a|b format): ");
+    scanf("%s", regex);
+
+    printf("\nNFA Transition Table:\n");
+
+    int state = 0;
+
+    for(int i = 0; i < strlen(regex); i++) {
+        if(regex[i] == '|') continue;
+
+        printf("q%d -- %c --> q%d\n", state, regex[i], state+1);
+        state++;
+    }
+
+    printf("Start State: q0\n");
+    printf("Final State: q%d\n", state);
+
+    return 0;
+}
